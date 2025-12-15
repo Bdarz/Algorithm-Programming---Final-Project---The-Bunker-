@@ -1,0 +1,61 @@
+import pygame
+import math
+from guns import Guns
+
+class Player(pygame.sprite.Sprite):
+    def __init__(self):
+        super().__init__()
+
+        self.og_image = pygame.image.load("assets/player.png").convert_alpha()
+        self.image = self.og_image
+        self.rect = self.image.get_rect()
+
+        self.position = pygame.math.Vector2(500, 500)
+        self.hitpoints = 5  
+        self.angle = 0
+
+        self.guns = Guns()
+        self.equipped_slot = 1
+
+        self.amialive = True
+    
+    def rotation(self):
+        cursor_position = pygame.mouse.get_pos() 
+
+        cursor_position_of_the_x_kind = cursor_position[0] - self.rect.centerx
+        cursor_position_of_the_y_kind = cursor_position[1] - self.rect.centery
+
+        self.angle = math.degrees(math.atan2(cursor_position_of_the_y_kind, cursor_position_of_the_x_kind))
+
+        self.image = pygame.transform.rotate(self.og_image, -self.angle)
+        self.rect = self.image.get_rect(center = self.position)
+
+    def movement(self):
+        keys = pygame.key.get_pressed()
+        move = pygame.math.Vector2(0,0)
+
+        if keys[pygame.K_w]:
+            move.y -= 1
+        if keys[pygame.K_a]:
+            move.x -= 1
+        if keys[pygame.K_s]:
+            move.y += 1
+        if keys[pygame.K_d]:
+            move.x += 1
+        
+        if move.x != 0 and move.y !=0: 
+            move *= 0.707 
+        
+        self.position += move * 4
+    
+    def amialivequestionmark(self):
+        if self.hitpoints <= 0:
+            self.amialive = False
+            
+    def update(self):
+        self.movement()
+        self.rotation()
+        self.amialivequestionmark()
+
+        self.rect.center = self.position
+

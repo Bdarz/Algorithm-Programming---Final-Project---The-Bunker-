@@ -1,0 +1,10 @@
+Update Log #3 (12, 11, 2025, 22 53)
+
+
+Contents:
+I begun planning the modularity of the code, separating contents.
+Main.py is for the main loop
+Menu.py is for the menu
+Game.py is for the game loop
+Objects.py is for the player class, enemy classes, weapon classes, etc.
+Level{X}.py is for the levels

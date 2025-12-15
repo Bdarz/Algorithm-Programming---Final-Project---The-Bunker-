@@ -1,0 +1,68 @@
+import pygame
+import math
+
+class Bullet(pygame.sprite.Sprite):
+    def __init__(self, player_position, angle):
+        super().__init__()
+
+        self.angle = angle
+        self.position = pygame.math.Vector2(100, 100)
+        
+
+        self.og_image = pygame.image.load("assets/bullet.png").convert_alpha()
+        self.image = pygame.transform.rotate(self.og_image, -self.angle)
+        self.rect = self.image.get_rect(center = self.position)
+
+        self.deathbell = 0
+
+    def move(self):
+        move = pygame.math.Vector2(0,0)
+        
+        move.x += math.cos(math.radians(self.angle))
+        move.y += math.sin(math.radians(self.angle))
+
+        self.position += move * 2
+
+        self.deathbell += 1
+        if self.deathbell >= 60:
+            self.kill() # Mortis
+
+    def update(self):
+        self.move()
+        
+        self.rect.center = self.position
+
+class Gun:
+    def __init__(self, name):
+        self.name = name
+
+    def shoot(self, player_position, angle):
+        return Bullet(player_position, angle)
+    
+    def check(self):
+        return self.name
+
+class Revolver(Gun):
+    def __init__(self):
+        super().__init__("Revolver")
+
+class Shotgun(Gun):
+    def __init__(self):
+        super().__init__("Shotgun")
+
+class Rifle(Gun):
+    def __init__(self):
+        super().__init__("Rifle")
+
+class Guns:
+    def __init__(self):
+        self.gun_inventory = [None, Revolver()]
+        self.guns_list = {
+            "Revolver": Revolver,
+            "Shotgun": Shotgun,
+            "Rifle": Rifle
+        }
+    
+    def pickup(self, gun_name):
+        if gun_name in self.guns_list:
+            self.gun_inventory.append(self.guns_list[gun_name]())

@@ -1,0 +1,29 @@
+# Imports the important external stuff.
+import pygame
+import sys
+import math
+
+# Connects with other files in this project.
+from menu import Menu
+
+pygame.init() # Activate pygame.
+
+# We start by creating the game window.
+screen = pygame.display.set_mode((1280, 720))
+pygame.display.set_caption("Game")
+clock = pygame.time.Clock()
+
+# Iniatialize gamestates.
+main_states = {
+    "menu": Menu(screen),
+}
+current_state = "menu" # Start at menu.
+
+# Main game loop.
+while True:
+    # Manages current gamestates.
+    current_state = main_states[current_state].run() # Manages gamestates.
+
+    # Manages frames/display.
+    pygame.display.flip()
+    clock.tick(60)

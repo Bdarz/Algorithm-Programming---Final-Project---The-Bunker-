@@ -1,0 +1,30 @@
+import pygame
+import sys
+
+class Level1:
+    def __init__(self, screen, player):
+        self.screen = screen
+        self.player = player
+
+        self.bg_color = (40,40,40)
+
+        self.player_projectile_sprite = pygame.sprite.Group()
+    
+    def run(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                pygame.quit()
+                sys.exit()
+            
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_n:
+                    bullet = self.player.guns.gun_inventory[self.player.equipped_slot].shoot(self.player.position, self.player.angle)
+                    self.projectile_sprite.add(bullet)
+
+        self.player.update()
+        self.player_projectile_sprite.update()
+        self.screen.fill(self.bg_color)
+        self.screen.blit(self.player.image, self.player.rect)
+        self.player_projectile_sprite.draw(self.screen)
+
+        return 1

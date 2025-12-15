@@ -1,0 +1,25 @@
+from level import Level1
+from player import Player
+
+class Game:
+    def __init__(self, screen):
+        self.screen = screen
+        self.player = Player()
+
+        self.levels = [
+            None,
+            Level1(self.screen, self.player)
+        ]
+        self.current_level = 1
+    
+    def run(self):
+        next_level = self.levels[self.current_level].run()
+
+        if self.player.amialive != True:
+            return "mortis"
+        elif next_level == "menu":
+            return "menu"
+        elif next_level in range (len(self.levels)) and next_level != 0:
+            self.current_level = next_level
+
+        return "game"
