@@ -5,8 +5,13 @@ from projectile import Bullet
 pygame.mixer.init()
 
 # Loads gunshot sounds
-gunshot_sound = pygame.mixer.Sound("assets/gun_shot.mp3")
-gunshot_sound.set_volume(0.05)
+gunshot_sound_found = False
+try:
+    gunshot_sound = pygame.mixer.Sound("assets/gun_shot.mp3")
+    gunshot_sound.set_volume(0.05)
+    gunshot_sound_found = True
+except:
+    pass
 
 # Base gun class, meant for child classes with unique shoot patterns
 class Gun:
@@ -20,11 +25,15 @@ class Gun:
     def shoot(self, player_position, angle):
         if self.current_cooldown == 0:
             self.current_cooldown = self.base_cooldown
-            gunshot_sound.play()
+            
+            if gunshot_sound_found:
+                gunshot_sound.play()
+
             return Bullet(player_position, angle)
         else:
             return None
 
+    # Updates cooldown
     def update(self):
         if self.current_cooldown > 0:
             self.current_cooldown -= 1

@@ -2,9 +2,9 @@
 import pygame 
 
 # Importing the main three gamestates
-from main_menu import Menu 
-from main_game import Game
-from main_ending import Ending
+from menu import Menu 
+from game import Game
+from ending import Ending
 
 # Initiate Pygame
 pygame.init()

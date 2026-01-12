@@ -20,6 +20,7 @@ class Game:
         self.current_level = 1 # Starts at level 1 (not 0)
 
     def control(self):
+        # Basic exit, movement, and shooting controls (I use touchpad, so I love n, n is better than left click for games)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -73,11 +74,11 @@ class Game:
         next_level = self.levels[self.current_level].run() # Runs whichever level is active
 
         if not self.player.amialive: # If dead
-            return "mortis"
+            return "game_over"
         elif next_level == "menu": # If return to menu
             return "menu"
         elif next_level == (len(self.levels)): # If it is the final stage 
-            return "ending"
+            return "game_won"
         elif next_level in range (len(self.levels)) and next_level != 0: # If it is a normal stage (starts at 1)
             self.current_level = next_level
         else: # Keeps you at level

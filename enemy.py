@@ -11,7 +11,7 @@ enemy_img = {
     "boss attack": pygame.image.load("assets/boss1Att.png")
 }
 
-# Static ranged enemies base class
+# Base class for static/unmoving ranged enemies
 class Static_Ranged(pygame.sprite.Sprite):
     def __init__(self, player, image, hp, atk_dmg, atk_spd, range, position):
         super().__init__()
@@ -43,7 +43,7 @@ class Static_Ranged(pygame.sprite.Sprite):
     def attack(self):
         return []
     
-    # Scan if player is in range
+    # Scan if player is in range before initiating an attack or behavior
     def scan(self):
         player_distance = self.position.distance_to(self.player.position)
         if player_distance < self.range and self.cooldown <= 0:
@@ -53,7 +53,7 @@ class Static_Ranged(pygame.sprite.Sprite):
             return []
     
     # If collission is detected, call this
-    def health(self): # Later: def health(self, dmg_taken)
+    def health(self):
         self.hp -= 1
         if self.hp <= 0:
             self.kill()
@@ -89,7 +89,7 @@ class SingleShooter(Static_Ranged):
                 # Adds projectile to list
                 projectiles.append(Enemy_Projectile_1(self.position, angle))
 
-        # Pattern 2: Three shots aimed at player
+        # Pattern 2: Spreadshot of three projectiles aimed at player
         else:
             angle -= 30
             for i in range(3):
@@ -129,7 +129,7 @@ class BossShooter1(Static_Ranged):
         self.custom_cooldown = 0
         self.custom_atk_spd = 120
 
-        # Obtain information of the room the boss is i
+        # Obtain information of the room the boss is in
         self.room_position = 0
         self.room_dimensions = 0
     
@@ -165,7 +165,7 @@ class BossShooter1(Static_Ranged):
                     angle += 6
                     projectiles.append(Enemy_Projectile_1(self.position, angle))
             
-            # Moves to one of 5 random locations
+            # Moves to one of 5 random locations in the room
             if pattern == 2:
                 new_position = random.randint(0, 4)
                 positions = [

@@ -22,7 +22,7 @@ class Player(pygame.sprite.Sprite):
         self.position = pygame.math.Vector2(self.spawnpoint)
         self.lasvoss = [[0, 0]]
         self.spawninvuln = False
-        self.speed = 8
+        self.speed = 20
         self.angle = 0
 
         self.guns = Gun_Inventory()

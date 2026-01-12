@@ -1,11 +1,11 @@
 # MVP of the entire project
 import pygame 
 
-# Importing the main four gamestates
-from main_menu import Menu 
-from main_game import Game
-from main_mortis import Mortis
-from main_ending import Ending
+# Importing the four main gamestates
+from gamestate_menu import Menu 
+from gamestate_game import Game
+from gamestate_game_over import GameOver
+from gamestate_game_won import GameWon
 
 # Initiate Pygame
 pygame.init()
@@ -14,27 +14,30 @@ pygame.init()
 screen = pygame.display.set_mode((1280, 720))
 pygame.display.set_caption("The Bunker")
 time = pygame.time.Clock()
+fps = 60
 
 # The main four gamestates
 main_states = {
-    "menu": Menu(screen),
+    "menu": Menu(screen, fps),
     "game": Game(screen),
-    "mortis": Mortis(screen),
-    "ending": Ending(screen)
+    "game_over": GameOver(screen, fps),
+    "game_won": GameWon(screen, fps)
 }
 current_main_state = "menu" # Start at the menu
 
 # Main game loop
 while True:
-    next_main_state = main_states[current_main_state].run() # Runs whichever gamestate is currently active. Each gamestate has a run method
+    next_main_state = main_states[current_main_state].run() # Runs whichever gamestate is currently active. Each gamestate has a run method called every frame
     
-    # Check just incase something goes wrong, which it probably never will. Also death screen
+    # Ensures that each state returns something valid, be it itself, or a different existing state
     if next_main_state in main_states:
         current_main_state = next_main_state
-    elif next_main_state == "its over":
+
+    # When the player dies or wins, it resets the game gamestate and returns to the menu
+    elif next_main_state == "reset":
         main_states["game"] = Game(screen) # Resets the game gamestate
         current_main_state = "menu"
 
     # Updates display and keeps fps at 60
     pygame.display.flip()
-    time.tick(60)
+    time.tick(fps)

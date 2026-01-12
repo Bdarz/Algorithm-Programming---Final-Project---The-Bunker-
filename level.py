@@ -1,5 +1,4 @@
 import pygame
-import sys
 
 from tile import Worldgen, Room
 
@@ -83,9 +82,7 @@ class Level():
         if enemy_hit:
             for enemy, playerproj in enemy_hit.items():
                 for p in playerproj:
-                    enemy.hp -= 1
-                    if enemy.hp <= 0:
-                        enemy.kill()
+                    enemy.health()
         
         pygame.sprite.groupcollide(self.sprites["enemyproj"], self.sprites["wall"], dokilla = True, dokillb = False)
         pygame.sprite.groupcollide(self.sprites["playerproj"], self.sprites["wall"], dokilla = True, dokillb = False)

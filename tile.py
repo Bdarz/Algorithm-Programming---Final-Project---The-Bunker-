@@ -1,25 +1,33 @@
+# Pygame for surfaces and rect, random for procedural generation
 import pygame
 import random
 
+# Importing enemy for entity generation
 from enemy import SingleShooter, PlusShooter, BossShooter1
 
+# Base wall class
 class Wall(pygame.sprite.Sprite):
     def __init__(self, position, dimensions):
         super().__init__()
 
+        # Identifier
         self.type = "wall"
 
+        # Properties such as texture and position
         self.image = pygame.Surface(dimensions)
         self.image.fill((40, 40, 40))
         self.rect = self.image.get_rect(topleft = position)
 
+# Stair object as the only method for players to travel between levels
 class Stairs(pygame.sprite.Sprite):
     def __init__(self, position, dimensions = [30, 30], type = ""):
         super().__init__()
 
+        self.type = type
+
+        # Properties such as texture and position
         self.image = pygame.Surface(dimensions)
 
-        self.type = type
         if type == "ascend":
             self.image.fill((255, 0, 0))
         elif type == "descend":
