@@ -9,7 +9,7 @@ Overview
 
 Run Instructions
 1. Download all source code and assets
-2. Run main using Python
+2. Run "main.py" using Python
 3. Play the game
 
 
@@ -24,6 +24,7 @@ Gameplay Instructions
 Dependencies
 - Python (Newest Version)
 - Pygame (Newest Version
+
 
 
 
