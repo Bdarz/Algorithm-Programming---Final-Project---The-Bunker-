@@ -1,7 +1,7 @@
 import pygame
 
-from menu import Menu
-from game import Game
+from gamestate_menu import Menu
+from gamestate_gameplay import Game
 
 pygame.init()
 
