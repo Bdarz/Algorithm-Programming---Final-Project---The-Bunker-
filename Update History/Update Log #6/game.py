@@ -37,7 +37,7 @@ class Game:
     def run(self):
         next_level = self.levels[self.current_level].run()
 
-        if self.player.amialive != True:
+        if self.player.is_player_alive != True:
             return self.mortis()
         elif next_level == "menu":
             return "menu"

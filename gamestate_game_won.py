@@ -14,12 +14,12 @@ class GameWon:
         self.timer = self.fps * self.timer_duration_in_seconds
 
         # Creates a congratulation text and places it on the center of the screen
-        screen_size = self.screen.get_size()
+        self.screen_size = self.screen.get_size()
         self.triumph = pygame.font.Font(None, 140).render("You've Won!", True, (255, 255, 255))
-        self.triumph_position = self.triumph.get_rect(center=(screen_size[0] // 2, screen_size[1] // 2))
+        self.triumph_position = self.triumph.get_rect(center=(self.screen_size[0] // 2, self.screen_size[1] // 2))
 
     def reset(self):
-        # Reset all dynamic variables to default
+        # Resets all dynamic variables to default
         self.timer = self.fps * self.timer_duration_in_seconds
 
     def control(self):

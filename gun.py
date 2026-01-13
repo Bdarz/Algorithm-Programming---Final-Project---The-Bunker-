@@ -2,9 +2,8 @@ import pygame
 
 from projectile import Bullet
 
+# Loads gunshot sounds, with some error handling
 pygame.mixer.init()
-
-# Loads gunshot sounds
 gunshot_sound_found = False
 try:
     gunshot_sound = pygame.mixer.Sound("assets/gun_shot.mp3")
@@ -25,7 +24,7 @@ class Gun:
     def shoot(self, player_position, angle):
         if self.current_cooldown == 0:
             self.current_cooldown = self.base_cooldown
-            
+
             if gunshot_sound_found:
                 gunshot_sound.play()
 

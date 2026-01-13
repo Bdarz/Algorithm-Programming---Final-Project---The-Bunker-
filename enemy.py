@@ -4,12 +4,22 @@ import random
 
 from projectile import Enemy_Projectile_1
 
-# Load images
-enemy_img = {
-    "placeholder": pygame.image.load("assets/player.png"),
-    "boss normal": pygame.image.load("assets/boss1Norm.png"),
-    "boss attack": pygame.image.load("assets/boss1Att.png")
-}
+# Load images, with some error handling
+try:
+    enemy_img = {
+        "placeholder": pygame.image.load("assets/player.png"),
+        "boss normal": pygame.image.load("assets/boss1Norm.png"),
+        "boss attack": pygame.image.load("assets/boss1Att.png")
+    }
+except:
+    default_texture = pygame.surface.Surface((30, 30))
+    default_texture.fill((50, 50, 50))
+    
+    enemy_img = {
+        "placeholder": default_texture,
+        "boss normal": default_texture,
+        "boss attack": default_texture
+    }
 
 # Base class for static/unmoving ranged enemies
 class Static_Ranged(pygame.sprite.Sprite):
@@ -45,7 +55,9 @@ class Static_Ranged(pygame.sprite.Sprite):
     
     # Scan if player is in range before initiating an attack or behavior
     def scan(self):
+        # Obtain distance to player
         player_distance = self.position.distance_to(self.player.position)
+
         if player_distance < self.range and self.cooldown <= 0:
             self.cooldown = self.atk_spd
             return self.attack()
@@ -62,7 +74,9 @@ class Static_Ranged(pygame.sprite.Sprite):
     def update(self):
         if self.cooldown > 0:
             self.cooldown -= 1
+
         projectile = self.scan()
+
         if projectile:
             return projectile
         else:
@@ -176,6 +190,7 @@ class BossShooter1(Static_Ranged):
                     pygame.math.Vector2(self.room_position[0] + self.room_dimensions[0] // 2, self.room_position[1] + self.room_dimensions[1] // 2),
                 ]
                 self.position = positions[new_position]
+
                 self.rect = self.image.get_rect(center = self.position)
 
             # Reverts sprite to normal

@@ -42,7 +42,7 @@ class Menu:
         self.start_animation = 0
 
     def reset(self):
-        # Reset all dynamic variables to default
+        # Resets all dynamic variables to default
         self.start_text_fading_animation = 0
         self.start_text_fading_animation_speed = self.fps // 60
         self.start_text_fading_animation_delay = self.fps * 2
@@ -104,7 +104,7 @@ class Menu:
             self.start_animation += self.fps // 30
             if self.start_animation >= 255:
                 self.reset()
-                return "game"
+                return "gameplay"
             
             # Changes transparency of dark overlay
             self.start_animation_display.set_alpha(self.start_animation)

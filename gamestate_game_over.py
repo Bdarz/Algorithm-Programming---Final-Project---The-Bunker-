@@ -27,7 +27,7 @@ class GameOver:
             self.sound_found = False
 
     def reset(self):
-        # Reset all dynamic variables to default
+        # Resets all dynamic variables to default
         self.sound_has_played = False
         self.timer = self.fps * self.timer_duration_in_seconds
 

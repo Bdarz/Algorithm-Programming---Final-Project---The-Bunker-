@@ -5,7 +5,7 @@ from level import Level_0, Level_1, Level_2, Boss_1
 from player import Player
 
 # Game screen
-class Game:
+class GamePlay:
     def __init__(self, screen):
         self.screen = screen
         self.player = Player(self.screen)
@@ -56,7 +56,7 @@ class Game:
                 self.screen.blit(sprite.image, resulting_offset)
 
         # Draws the player sprite with extra offset due to drawing topleft/center issues
-        extra_offset = pygame.math.Vector2(self.player.rectwo.width//2, self.player.rectwo.height//2)
+        extra_offset = pygame.math.Vector2(self.player.rotation_rect.width//2, self.player.rotation_rect.height//2)
         resulting_offset = self.player.position - extra_offset - self.levels[self.current_level].current_offset
         self.screen.blit(self.player.image, resulting_offset)
 
@@ -73,7 +73,7 @@ class Game:
         self.custom_sprite_draw()
         next_level = self.levels[self.current_level].run() # Runs whichever level is active
 
-        if not self.player.amialive: # If dead
+        if not self.player.is_player_alive: # If dead
             return "game_over"
         elif next_level == "menu": # If return to menu
             return "menu"
@@ -84,4 +84,4 @@ class Game:
         else: # Keeps you at level
             next_level = self.current_level
 
-        return "game" # Stays at game screen
+        return "gameplay" # Stays at game screen

@@ -1,11 +1,20 @@
 import pygame
 import math
 
-# Load base images
-proj_img = {
-    "bullet": pygame.image.load("assets/bullet.png"),
-    "enemy proj 1": pygame.image.load("assets/enemy_projectile_1.png")
-}
+# Load base images, with some error handling
+try:
+    proj_img = {
+        "bullet": pygame.image.load("assets/bullet.png"),
+        "enemy proj 1": pygame.image.load("assets/enemy_projectile_1.png")
+    }
+except:
+    default_texture = pygame.surface.Surface((10, 10))
+    default_texture.fill((20, 20, 20))
+
+    proj_img = {
+        "bullet": default_texture,
+        "enemy proj 1": default_texture
+    }
 
 # Base projectile class
 class Projectile(pygame.sprite.Sprite):

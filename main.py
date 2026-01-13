@@ -3,7 +3,7 @@ import pygame
 
 # Importing the four main gamestates
 from gamestate_menu import Menu 
-from gamestate_game import Game
+from gamestate_gameplay import GamePlay
 from gamestate_game_over import GameOver
 from gamestate_game_won import GameWon
 
@@ -19,7 +19,7 @@ fps = 60
 # The main four gamestates
 main_states = {
     "menu": Menu(screen, fps),
-    "game": Game(screen),
+    "gameplay": GamePlay(screen),
     "game_over": GameOver(screen, fps),
     "game_won": GameWon(screen, fps)
 }
@@ -35,7 +35,7 @@ while True:
 
     # When the player dies or wins, it resets the game gamestate and returns to the menu
     elif next_main_state == "reset":
-        main_states["game"] = Game(screen) # Resets the game gamestate
+        main_states["gameplay"] = GamePlay(screen) # Resets the game gamestate
         current_main_state = "menu"
 
     # Updates display and keeps fps at 60
