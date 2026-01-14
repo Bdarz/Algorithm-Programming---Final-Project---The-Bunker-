@@ -162,7 +162,7 @@ class Room(pygame.sprite.Sprite):
 
 # Procedural Generation code
 class Worldgen:
-    def __init__(self, player, room_amount, base_room_hwidth, level):
+    def __init__(self, player, room_amount = 10, base_room_hwidth = [400, 400], level = 0):
         # First, inherit player object for enemy generation later
         self.player = player
 

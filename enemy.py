@@ -7,7 +7,7 @@ from projectile import Enemy_Projectile_1
 # Load images, with some error handling
 try:
     enemy_img = {
-        "placeholder": pygame.image.load("assets/player.png"),
+        "placeholder": pygame.image.load("assets/enemy.png"),
         "boss normal": pygame.image.load("assets/boss1Norm.png"),
         "boss attack": pygame.image.load("assets/boss1Att.png")
     }

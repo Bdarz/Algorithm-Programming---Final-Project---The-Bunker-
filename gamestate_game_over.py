@@ -18,17 +18,8 @@ class GameOver:
         self.mortis = pygame.font.Font(None, 140).render("MORTIS", True, (255, 255, 255))
         self.mortis_position = self.mortis.get_rect(center=(self.screen_size[0] // 2, self.screen_size[1] // 2))
 
-        # Creates a game over sound if the asset is found, and plays it only once per death screen
-        self.sound_has_played = False
-        self.sound_found = True
-        try:
-            self.sound = pygame.mixer.Sound("assets/mortis.wav")
-        except:
-            self.sound_found = False
-
     def reset(self):
         # Resets all dynamic variables to default
-        self.sound_has_played = False
         self.timer = self.fps * self.timer_duration_in_seconds
 
     def control(self):
@@ -49,11 +40,6 @@ class GameOver:
         # Dark background
         self.screen.fill((0, 0, 0))
         self.screen.blit(self.mortis, self.mortis_position)
-
-        # Plays the sound once
-        if self.sound_has_played == False and self.sound_found == True:
-            self.sound_has_played = True
-            self.sound.play()
 
         # Keeps user at ending screen for like, 4 seconds, then returns menu, also reset some stuff
         if self.timer < 1:

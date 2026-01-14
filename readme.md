@@ -14,7 +14,7 @@ Run Instructions
 
 
 Gameplay Instructions
-1. Start the game from the mnu
+1. Start the game from the menu
 2. Move with WASD keys
 3. Press N to shoot
 4. Find the "stair" or red cube in each levels to progress to the next one
@@ -23,7 +23,7 @@ Gameplay Instructions
 
 Dependencies
 - Python (Newest Version)
-- Pygame (Newest Version
+- Pygame (Newest Version)
 
 
 
