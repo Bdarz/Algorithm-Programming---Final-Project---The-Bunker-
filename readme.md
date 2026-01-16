@@ -22,8 +22,8 @@ Gameplay Instructions
 
 
 Dependencies
-- Python (Newest Version)
-- Pygame (Newest Version)
+- Python (Version 3.13.7)
+- Pygame (Version 2.6.1)
 
 
 
