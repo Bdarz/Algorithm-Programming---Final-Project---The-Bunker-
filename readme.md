@@ -25,6 +25,8 @@ Dependencies
 - Python (Version 3.13.7)
 - Pygame (Version 2.6.1)
 
+Note: Versions are not absolute, it is recommended to use the newest compatible versions for both, the listed versions are just an example of what versions work
+
 
 
 
