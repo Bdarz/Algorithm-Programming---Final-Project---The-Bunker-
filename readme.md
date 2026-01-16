@@ -8,9 +8,10 @@ Overview
 
 
 Run Instructions
-1. Download all source code and assets
-2. Run "main.py" using Python
-3. Play the game
+1. Download and extract all source code and assets
+2. Install compatible versions of Python and Pygame
+3. Run "main.py" using Python
+4. Play the game
 
 
 Gameplay Instructions
