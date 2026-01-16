@@ -1,6 +1,7 @@
 # pygame for display and control, sys for control
 import pygame
 import sys
+import os
 
 # Menu/home screen
 class Menu:
@@ -14,7 +15,7 @@ class Menu:
 
         # Creates background image, with some error handling
         try:
-            self.bg = pygame.image.load("assets/main_menu_background.png")
+            self.bg = pygame.image.load(os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets/main_menu_background.png"))
             self.bg = pygame.transform.scale(self.bg, (self.width, self.height))
         except:
             self.bg = pygame.surface.Surface((self.width, self.height))

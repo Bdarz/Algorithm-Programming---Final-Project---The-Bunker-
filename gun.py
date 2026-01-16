@@ -1,12 +1,14 @@
 import pygame
+import os
 
 from projectile import Bullet
 
 # Loads gunshot sounds, with some error handling
 pygame.mixer.init()
+
 gunshot_sound_found = False
 try:
-    gunshot_sound = pygame.mixer.Sound("assets/gun_shot.mp3")
+    gunshot_sound = pygame.mixer.Sound(os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets/gun_shot.mp3"))
     gunshot_sound.set_volume(0.05)
     gunshot_sound_found = True
 except:

@@ -1,11 +1,12 @@
 import pygame
 import math
+import os
 
 # Load base images, with some error handling
 try:
     proj_img = {
-        "bullet": pygame.image.load("assets/bullet.png"),
-        "enemy proj 1": pygame.image.load("assets/enemy_projectile_1.png")
+        "bullet": pygame.image.load(os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets/bullet.png")),
+        "enemy proj 1": pygame.image.load(os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets/enemy_projectile_1.png"))
     }
 except:
     default_texture = pygame.surface.Surface((10, 10))

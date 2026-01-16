@@ -1,15 +1,16 @@
 import pygame
 import math
 import random
+import os
 
 from projectile import Enemy_Projectile_1
 
-# Load images, with some error handling
+# Load images, with some error handling, also using os to get the exact path
 try:
     enemy_img = {
-        "placeholder": pygame.image.load("assets/enemy.png"),
-        "boss normal": pygame.image.load("assets/boss1Norm.png"),
-        "boss attack": pygame.image.load("assets/boss1Att.png")
+        "placeholder": pygame.image.load(os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets/enemy.png")),
+        "boss normal": pygame.image.load(os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets/boss1Norm.png")),
+        "boss attack": pygame.image.load(os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets/boss1Att.png"))
     }
 except:
     default_texture = pygame.surface.Surface((30, 30))

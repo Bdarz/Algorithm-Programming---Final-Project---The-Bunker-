@@ -1,14 +1,15 @@
 # Pygame for textures and rects, math for texture rotations
 import pygame
 import math
+import os
 
 # Import guns/weapons for player to store and manage
 from gun import Gun_Inventory
 
 # Load images, with some error handling
 try:
-    player_image = pygame.image.load("assets/player.png")
-    hitpoint_image = pygame.image.load("assets/heart.png")
+    player_image = pygame.image.load(os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets/player.png"))
+    hitpoint_image = pygame.image.load(os.path.join(os.path.dirname(os.path.abspath(__file__)), "assets/heart.png"))
 except:
     default_texture = pygame.surface.Surface((30, 30))
     default_texture.fill((50, 50, 50))
